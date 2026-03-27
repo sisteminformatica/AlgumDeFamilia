@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "Contact": {
+      "title": "Contact",
+      "description": "A family member or contact in the album",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "company": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "status": { "type": "string", "enum": ["Em casa", "No Trabalho", "Na Praia", "Fazendo Bagunça", "Dormindo"] },
+        "last_contacted": { "type": "string" },
+        "avatar_url": { "type": "string" },
+        "birth_date": { "type": "string" },
+        "linkedin": { "type": "string" },
+        "twitter": { "type": "string" },
+        "instagram": { "type": "string" },
+        "metadata": { "type": "object" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "uid": { "type": "string" }
+      },
+      "required": ["name", "uid"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "A task or reminder",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "due_date": { "type": "string" },
+        "priority": { "type": "string", "enum": ["Low", "Medium", "High"] },
+        "status": { "type": "string", "enum": ["Pending", "Completed"] },
+        "created_at": { "type": "string", "format": "date-time" },
+        "uid": { "type": "string" }
+      },
+      "required": ["title", "uid"]
+    },
+    "Media": {
+      "title": "Media",
+      "description": "A photo or video in the album",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "url": { "type": "string" },
+        "type": { "type": "string", "enum": ["image", "video"] },
+        "category": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "uid": { "type": "string" }
+      },
+      "required": ["url", "type", "uid"]
+    }
+  },
+  "firestore": {
+    "/contacts/{contactId}": {
+      "schema": "Contact",
+      "description": "Collection of family contacts"
+    },
+    "/tasks/{taskId}": {
+      "schema": "Task",
+      "description": "Collection of tasks"
+    },
+    "/media/{mediaId}": {
+      "schema": "Media",
+      "description": "Collection of photos and videos"
+    }
+  }
+}
